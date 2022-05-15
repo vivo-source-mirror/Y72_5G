@@ -1,0 +1,48 @@
+&spi4 {
+	status = "okay";
+	vts_device@0 {
+		compatible = "vivo,ts-spi";
+		status = "okay";
+		reg=<0>;
+		spi-max-frequency = <4800000>;
+
+		nt36672 {
+			compatible = "novatek,NVT-ts-spi-v2";
+			status = "ok";
+
+			vts-type=<0>;
+			vts-ic-number=<81>;
+			spi-max-frequency = <9600000>;	//4800000,9600000,15000000,19200000
+			novatek,reset-gpio = <&pio 186 0x00>;
+			novatek,irq-gpio = <&pio 14 0x2001>;
+			novatek,cs-gpio = <&pio 98 0x00>;
+			novatek,miso-gpio = <&pio 12 0x00>;
+			sensor-test-key="com.nttouchscreen.mptest:MainActivity:android.intent.action.novatek:0:testResult";
+			lcm-noise-test-key="com.nt36xxxtouchscreen.deltadiff:MainActivity:null:null:null";
+			rawdata-test-key="com.nttouchscreen.getdata:MainActivity:null:null:null";
+			rf-noise-test-key="com.nt36xxxtouchscreen.deltadiff:BspTest:android.intent.action.nvtdeltadiff:0:testResult";
+
+			//vts-incell-panel = <&dsi_nt36675_tm_fhdplus_video &dsi_ft8756_truly_fhdplus_video &dsi_nt36672c_tm657_dsc_fhdplus_video>;
+
+		};
+	};
+
+	tp_module1 {
+		compatible = "vivo,touch-panel-module";
+		vts-ic-number=<81>;
+		vts-type=<0>;
+		vts-lcmid=<16>;
+		vts-dimention-x=<1080>;
+		vts-dimention-y=<2408>;
+		vts-tx-sensors=<16>;
+		vts-rx-sensors=<36>;
+		vts-incell=<1>;
+		vts-need-caliberation=<0>;
+		vts-virtual-proximinity=<0>;
+		vts-long-press=<0>;
+		vts-module-vendor=<0xF0>;
+		vts-no-flash=<1>;
+		vts-game-mode=<1>;
+		vts-game-idle-time=<10>;
+	};
+};
